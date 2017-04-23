@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "74c6e16506e9e443e3a6b1bfb432b82a",
-    "content-hash": "d7a3d58f48ee4388c8f5accf2276280d",
+    "hash": "fbb7d4e3e0b2320ecac78190bc81cdf9",
+    "content-hash": "77aeb6274a750fc9ec36bb4e091d71c6",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -550,6 +550,65 @@
                 "migrations"
             ],
             "time": "2016-12-25 22:54:00"
+        },
+        {
+            "name": "malkusch/lock",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/malkusch/lock.git",
+                "reference": "5555f291092a0ed5ab4f02d8be7031b877d8d165"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/malkusch/lock/zipball/5555f291092a0ed5ab4f02d8be7031b877d8d165",
+                "reference": "5555f291092a0ed5ab4f02d8be7031b877d8d165",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6",
+                "psr/log": "^1"
+            },
+            "require-dev": {
+                "ext-redis": "^2.2.4|^3",
+                "kriswallsmith/spork": "^0.3",
+                "mikey179/vfsstream": "^1.5.0",
+                "php-mock/php-mock-phpunit": "^1",
+                "phpunit/phpunit": "^5",
+                "predis/predis": "~1.0",
+                "zetacomponents/system-information": "~1.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "malkusch\\lock\\": "classes/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "WTFPL"
+            ],
+            "authors": [
+                {
+                    "name": "Markus Malkusch",
+                    "email": "markus@malkusch.de",
+                    "homepage": "http://markus.malkusch.de",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Mutex library for exclusive code execution.",
+            "homepage": "https://github.com/malkusch/lock",
+            "keywords": [
+                "cas",
+                "flock",
+                "lock",
+                "memcache",
+                "mutex",
+                "redis",
+                "redlock",
+                "semaphore"
+            ],
+            "time": "2016-08-05 11:03:36"
         },
         {
             "name": "ocramius/package-versions",
@@ -1110,19 +1169,20 @@
         },
         {
             "name": "mnvx/pprocess",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mnvx/pprocess.git",
-                "reference": "1c2d7132d409d3528140b1fd7833bd6d49cc4076"
+                "reference": "daa1a4c927923c79259100ffd7ff635dbf4e7902"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mnvx/pprocess/zipball/1c2d7132d409d3528140b1fd7833bd6d49cc4076",
-                "reference": "1c2d7132d409d3528140b1fd7833bd6d49cc4076",
+                "url": "https://api.github.com/repos/mnvx/pprocess/zipball/daa1a4c927923c79259100ffd7ff635dbf4e7902",
+                "reference": "daa1a4c927923c79259100ffd7ff635dbf4e7902",
                 "shasum": ""
             },
-            "require-dev": {
+            "require": {
+                "php": ">=7.0",
                 "phpunit/phpunit": "^6.0",
                 "symfony/process": "^3.0|^2.0"
             },
@@ -1143,7 +1203,7 @@
                 }
             ],
             "description": "Testing of async processes",
-            "time": "2017-04-20 22:31:29"
+            "time": "2017-04-23 17:39:11"
         },
         {
             "name": "myclabs/deep-copy",
@@ -2449,6 +2509,55 @@
             "description": "Library that helps with managing the version number of Git-hosted PHP projects",
             "homepage": "https://github.com/sebastianbergmann/version",
             "time": "2016-10-03 07:35:21"
+        },
+        {
+            "name": "symfony/process",
+            "version": "v3.2.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/process.git",
+                "reference": "57fdaa55827ae14d617550ebe71a820f0a5e2282"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/process/zipball/57fdaa55827ae14d617550ebe71a820f0a5e2282",
+                "reference": "57fdaa55827ae14d617550ebe71a820f0a5e2282",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Process\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Process Component",
+            "homepage": "https://symfony.com",
+            "time": "2017-03-27 18:07:02"
         },
         {
             "name": "theseer/tokenizer",

@@ -24,8 +24,12 @@ class Version20170421210326 extends AbstractMigration
 
         $table = $schema->createTable('account_import');
         $table->addColumn('id', 'integer');
+        $table->addForeignKeyConstraint('account', ['id'], ['id'], [
+            'onUpdate' => 'RESTRICT',
+            'onDelete' => 'RESTRICT',
+        ]);
         $table->addColumn('external_id', 'integer');
-        $table->addIndex(['id']);
+        $table->addUniqueIndex(['id']);
         $table->setPrimaryKey(['external_id']);
     }
 

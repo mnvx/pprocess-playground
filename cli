@@ -2,36 +2,7 @@
 <?php
 require __DIR__ . '/vendor/autoload.php';
 
-use Doctrine\DBAL\Migrations\Tools\Console\Command;
-use Symfony\Component\Console\Application;
+use App\Command\Initializer;
 
-$cli = new Application();
-
-// Register commands for Doctrine Migrations
-$config = new \Doctrine\DBAL\Configuration();
-$connectionParams = require __DIR__ . '/config/database.php';
-$db = \Doctrine\DBAL\DriverManager::getConnection($connectionParams, $config);
-$helperSet = $cli->getHelperSet();
-$helperSet->set(new \Doctrine\DBAL\Tools\Console\Helper\ConnectionHelper($db), 'db');
-$helperSet->set(new \Symfony\Component\Console\Helper\QuestionHelper(), 'dialog');
-
-$cli->addCommands([
-    new Command\ExecuteCommand(),
-    new Command\GenerateCommand(),
-    new Command\MigrateCommand(),
-    new Command\StatusCommand(),
-    new Command\VersionCommand(),
-]);
-
-// Register commands from src/Command
-$commandPath = __DIR__ . '/src/Command/';
-foreach (new \DirectoryIterator($commandPath) as $fileInfo) {
-    if (is_file($commandPath . $fileInfo->getFilename()) && substr($fileInfo->getFilename(), -11) === 'Command.php') {
-        $command = '\\App\\Command\\' . substr($fileInfo->getFilename(), 0, -4);
-        if (class_exists($command)) {
-            $cli->add(new $command);
-        }
-    }
-}
-
+$cli = Initializer::create();
 $cli->run();

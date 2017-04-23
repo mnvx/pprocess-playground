@@ -17,7 +17,8 @@
     "require": {
         "symfony/console": "^3.2",
         "doctrine/migrations": "^1.5",
-        "doctrine/dbal": "^2.5"
+        "doctrine/dbal": "^2.5",
+        "malkusch/lock": "^1.0"
     },
     "require-dev": {
         "mnvx/pprocess": "^1.0",
