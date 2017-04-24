@@ -17,7 +17,7 @@ class DeleteCommand extends Command
     {
         $this
             ->setName('app:delete')
-            ->setDescription('Illustration of possible problem with import')
+            ->setDescription('Delete account by external id')
             ->addArgument('externalId', InputArgument::REQUIRED, 'External account Id')
         ;
     }
