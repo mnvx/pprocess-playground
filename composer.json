@@ -18,7 +18,8 @@
         "symfony/console": "^3.2",
         "doctrine/migrations": "^1.5",
         "doctrine/dbal": "^2.5",
-        "malkusch/lock": "^1.0"
+        "malkusch/lock": "^1.0",
+        "guzzlehttp/guzzle": "^6.2"
     },
     "require-dev": {
         "mnvx/pprocess": "^1.0",
