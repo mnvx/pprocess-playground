@@ -3,20 +3,22 @@
 namespace App\Command;
 
 use Doctrine\DBAL\Connection;
+use malkusch\lock\mutex\FlockMutex;
+use RuntimeException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * @usage ./cli app:detect-active-users
+ * @usage ./cli app:deadlock-one
  */
-class DetectActiveUsersCommand extends Command
+class DeadlockOneCommand extends Command
 {
     protected function configure()
     {
         $this
-            ->setName('app:detect-active-users')
-            ->setDescription('Illustration of possible problem with table refreshing')
+            ->setName('app:deadlock-one')
+            ->setDescription('Illustration of deadlocks')
         ;
     }
 
@@ -26,19 +28,21 @@ class DetectActiveUsersCommand extends Command
         $connection = $qb = $this->getHelperSet()->get('db')->getConnection();
 
         try {
+//            $lockFile = dirname(dirname(__DIR__)) . '/temp/deadlock.lock';
+//            $mutex = new FlockMutex(fopen($lockFile, 'r'));
+//            $mutex->synchronized(function () use ($connection) {
+
             $connection->beginTransaction();
 
-            //$connection->prepare("SELECT id FROM users WHERE id IN (3, 5, 6, 10) FOR UPDATE")->execute();
-            $connection->prepare("SELECT id FROM users_active FOR UPDATE")->execute();
-            $connection->prepare("DELETE FROM users_active")->execute();
-            //$connection->prepare("TRUNCATE TABLE users_active")->execute();
+            $connection->prepare("UPDATE deadlock SET value = value + 1 WHERE id = 1")->execute();
 
             usleep(100000); // 0.1 sec
 
-            $connection->prepare("INSERT INTO users_active (id) VALUES (3), (5), (6), (10)")->execute();
+            $connection->prepare("UPDATE deadlock SET value = value + 1 WHERE id = 2")->execute();
 
             $connection->commit();
-            $output->writeln('<info>users_active refreshed</info>');
+//            });
+            $output->writeln('<info>Completed without deadlocks</info>');
         }
         catch (\Throwable $e) {
             $connection->rollBack();

@@ -34,7 +34,6 @@ class Version20170423230038 extends AbstractMigration
      */
     public function down(Schema $schema)
     {
-        // this down() migration is auto-generated, please modify it to your needs
-
+        $this->addSql("TRUNCATE TABLE users");
     }
 }

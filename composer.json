@@ -26,10 +26,12 @@
     },
     "scripts": {
         "post-install-cmd": [
-            "cp -n config/database.php.template config/database.php"
+            "cp -n config/database.php.template config/database.php",
+            "touch temp/deadlock.lock"
         ],
         "post-update-cmd": [
-            "cp -n config/database.php.template config/database.php"
+            "cp -n config/database.php.template config/database.php",
+            "touch temp/deadlock.lock"
         ]
     }
 }
